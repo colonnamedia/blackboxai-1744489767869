@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - FitFlex</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        opensans: ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#FF4B2B',
+                        secondary: '#2B2D42',
+                        accent: '#8D99AE',
+                        light: '#EDF2F4',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-opensans bg-light">
+    <!-- Navigation -->
+    <nav class="bg-secondary text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <a href="../index.html" class="flex items-center">
+                        <i class="fas fa-dumbbell text-primary text-2xl mr-2"></i>
+                        <span class="font-montserrat font-bold text-xl">FitFlex</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="../index.html" class="hover:bg-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="membership.html" class="hover:bg-primary px-3 py-2 rounded-md text-sm font-medium">Memberships</a>
+                        <a href="schedule.html" class="hover:bg-primary px-3 py-2 rounded-md text-sm font-medium">Schedule</a>
+                        <a href="trainers.html" class="hover:bg-primary px-3 py-2 rounded-md text-sm font-medium">Trainers</a>
+                        <a href="login.html" class="bg-primary px-3 py-2 rounded-md text-sm font-medium">Login</a>
+                    </div>
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button type="button" id="mobile-menu-button" class="text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="hidden md:hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="../index.html" class="hover:bg-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                    <a href="membership.html" class="hover:bg-primary block px-3 py-2 rounded-md text-base font-medium">Memberships</a>
+                    <a href="schedule.html" class="hover:bg-primary block px-3 py-2 rounded-md text-base font-medium">Schedule</a>
+                    <a href="trainers.html" class="hover:bg-primary block px-3 py-2 rounded-md text-base font-medium">Trainers</a>
+                    <a href="login.html" class="bg-primary block px-3 py-2 rounded-md text-base font-medium">Login</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Section -->
+    <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-md w-full space-y-8">
+            <!-- Logo and Title -->
+            <div class="text-center">
+                <div class="flex justify-center">
+                    <i class="fas fa-dumbbell text-primary text-4xl"></i>
+                </div>
+                <h2 class="mt-6 text-3xl font-bold text-secondary font-montserrat">
+                    Welcome Back to FitFlex
+                </h2>
+                <p class="mt-2 text-sm text-gray-600">
+                    Sign in to access your fitness journey
+                </p>
+            </div>
+
+            <!-- Login Form -->
+            <div class="mt-8 bg-white py-8 px-4 shadow-lg rounded-lg sm:px-10">
+                <form class="space-y-6" onsubmit="handleLogin(event)">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-700">
+                            Email Address
+                        </label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-envelope text-gray-400"></i>
+                            </div>
+                            <input id="email" name="email" type="email" required 
+                                class="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Enter your email">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-medium text-gray-700">
+                            Password
+                        </label>
+                        <div class="mt-1 relative">
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <i class="fas fa-lock text-gray-400"></i>
+                            </div>
+                            <input id="password" name="password" type="password" required 
+                                class="appearance-none block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-primary focus:border-primary"
+                                placeholder="Enter your password">
+                        </div>
+                    </div>
+
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <input id="remember-me" name="remember-me" type="checkbox" 
+                                class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                            <label for="remember-me" class="ml-2 block text-sm text-gray-700">
+                                Remember me
+                            </label>
+                        </div>
+
+                        <div class="text-sm">
+                            <a href="#" onclick="showForgotPasswordModal()" class="font-medium text-primary hover:text-red-600">
+                                Forgot your password?
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" 
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-gray-500">Or continue with</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 grid grid-cols-2 gap-3">
+                        <button onclick="socialLogin('google')" 
+                            class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-google text-red-500 mr-2"></i>
+                            Google
+                        </button>
+                        <button onclick="socialLogin('facebook')" 
+                            class="w-full flex items-center justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50">
+                            <i class="fab fa-facebook text-blue-600 mr-2"></i>
+                            Facebook
+                        </button>
+                    </div>
+                </div>
+
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-600">
+                        Don't have an account? 
+                        <a href="#" onclick="showSignupModal()" class="font-medium text-primary hover:text-red-600">
+                            Sign up now
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-secondary font-montserrat">Reset Password</h3>
+                <button onclick="hideForgotPasswordModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="handlePasswordReset(event)" class="space-y-4">
+                <div>
+                    <label for="reset-email" class="block text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="reset-email" required 
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Enter your email">
+                </div>
+                
+                <button type="submit" class="w-full bg-primary hover:bg-red-600 text-white font-bold py-3 rounded-lg transition duration-300">
+                    Send Reset Link
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signupModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-secondary font-montserrat">Create Account</h3>
+                <button onclick="hideSignupModal()" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <form onsubmit="handleSignup(event)" class="space-y-4">
+                <div>
+                    <label for="signup-name" class="block text-gray-700 mb-2">Full Name</label>
+                    <input type="text" id="signup-name" required 
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Enter your full name">
+                </div>
+                
+                <div>
+                    <label for="signup-email" class="block text-gray-700 mb-2">Email Address</label>
+                    <input type="email" id="signup-email" required 
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Enter your email">
+                </div>
+                
+                <div>
+                    <label for="signup-password" class="block text-gray-700 mb-2">Password</label>
+                    <input type="password" id="signup-password" required 
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Create a password">
+                </div>
+                
+                <div>
+                    <label for="signup-confirm-password" class="block text-gray-700 mb-2">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" required 
+                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"
+                        placeholder="Confirm your password">
+                </div>
+                
+                <button type="submit" class="w-full bg-primary hover:bg-red-600 text-white font-bold py-3 rounded-lg transition duration-300">
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Modal controls
+        const forgotPasswordModal = document.getElementById('forgotPasswordModal');
+        const signupModal = document.getElementById('signupModal');
+
+        function showForgotPasswordModal() {
+            forgotPasswordModal.classList.remove('hidden');
+        }
+
+        function hideForgotPasswordModal() {
+            forgotPasswordModal.classList.add('hidden');
+        }
+
+        function showSignupModal() {
+            signupModal.classList.remove('hidden');
+        }
+
+        function hideSignupModal() {
+            signupModal.classList.add('hidden');
+        }
+
+        // Form handlers
+        function handleLogin(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Here you would typically send the login request to a server
+            alert('Login attempted with email: ' + email);
+        }
+
+        function handlePasswordReset(event) {
+            event.preventDefault();
+            const email = document.getElementById('reset-email').value;
+            
+            // Here you would typically send the password reset request to a server
+            alert('Password reset link sent to: ' + email);
+            hideForgotPasswordModal();
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Here you would typically send the signup request to a server
+            alert('Account created for: ' + name);
+            hideSignupModal();
+        }
+
+        function socialLogin(provider) {
+            // Here you would typically implement social login
+            alert('Logging in with ' + provider);
+        }
+    </script>
+</body>
+</html>
